@@ -23,7 +23,7 @@ class CardItem extends StatelessWidget {
               SizedBox(
                 width: 73.0 * (MediaQuery.of(context).size.width / 1920),
               ),
-              Text('Input From API', 
+              Text(this.name, 
               style: TextStyle(
                 fontSize: 25,
               ),
@@ -36,7 +36,7 @@ class CardItem extends StatelessWidget {
               SizedBox(
                 width: 73.0 * (MediaQuery.of(context).size.width / 1920),
               ),
-              Text('type ', 
+              Text(this.type, 
               style: TextStyle(
                 fontSize: 15,
                 ),
@@ -44,7 +44,7 @@ class CardItem extends StatelessWidget {
               SizedBox(
                 width: 472 * (MediaQuery.of(context).size.width / 1920),
               ),
-              Text('level ', 
+              Text(this.level, 
               style: TextStyle(
                 fontSize: 15,
                 ),

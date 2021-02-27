@@ -1,43 +1,44 @@
 import 'package:esr_project/Components/CardItem.dart';
+import 'package:esr_project/Components/JsonAPI.dart';
 import 'package:esr_project/Components/NavItem.dart';
 import 'package:flutter/material.dart';
 
 class Explore extends StatefulWidget {
+  
+  bool loading  = true ; 
   @override
   _ExploreState createState() => _ExploreState();
 }
 
 class _ExploreState extends State<Explore> {
 
-    List<CardItem> cards = [];
-
-    void buildTheCards(String api){
-        List<String> apiL = ['First' , 'Second' , 'Therd'];
-        cards.add(CardItem(
-          onClick: (){
-            print("Item is added");
-          },
-          name: apiL[0],
-          type: apiL[1],
-          level:apiL[2],
-            )
-          );
+      List<Widget> cardslist = [];
+    @override
+    void initState(){ 
+      super.initState();
+        load();
     }
 
-
-
-
-
-
-
+      void load() async {
+          cardslist =  await JsonAPI().getResearchs().whenComplete(() => print('done'));
+          
+          Future.delayed(Duration(seconds: 2), (){
+            setState(() {
+            cardslist;
+            widget.loading = false ;  
+          });
+          });
+      }
 
   @override
   Widget build(BuildContext context) {
     var screen = MediaQuery.of(context);
     double space;
     (screen.size.width < 1000)? (space = 200) : space = 777; 
-    buildTheCards('');
-    return Scaffold(
+    
+       
+        return (widget.loading)?  Text("Loading") : 
+        Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
@@ -111,7 +112,8 @@ class _ExploreState extends State<Explore> {
                   width: 772 * (screen.size.width / 1920),
                   height: 527 * (screen.size.height / 1080),
                   child: ListView(
-                    children: cards,
+                    padding: EdgeInsets.only(bottom: 20.0),
+                    children: cardslist,
                   ),
                 ),  
                 SizedBox(width: 137 *(screen.size.width / 1920) ,
