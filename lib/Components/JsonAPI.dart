@@ -1,16 +1,16 @@
 import 'dart:convert';
+import 'dart:js';
 import 'package:esr_project/Components/CardItem.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../Paper.dart';
 import 'CardItem.dart';
 import 'package:esr_project/Explore.dart';
 class JsonAPI{
-
-   JsonAPI();
+    
    
 
-   Future<List<Widget>> getResearchs()async{ 
-
+   Future<List<Widget>> getResearchs(BuildContext context)async{ 
      var parameters  = {
        'grant_type' : 'password', 
        'username' : 'Azoz', 
@@ -33,9 +33,16 @@ class JsonAPI{
           var papers = json.decode(value.body);
           
           for(var pa in papers){
-            print(pa['researchSubject']);
+            
             list.add(
-              CardItem(onClick: (){},
+              CardItem(onClick: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Paper(
+                  title: pa['researchSubject'],
+                   content: pa['researchConcept'],
+                    )
+                  )
+                );
+              },
               name: pa['researchSubject'],
               level:"Beginner",
               type: "Education",
@@ -51,7 +58,7 @@ class JsonAPI{
    }
 
     void postValues(){
-      
+      (true) ? "hi" : "bey";
    }
 
 }

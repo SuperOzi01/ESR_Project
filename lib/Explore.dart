@@ -20,7 +20,7 @@ class _ExploreState extends State<Explore> {
     }
 
       void load() async {
-          cardslist =  await JsonAPI().getResearchs().whenComplete(() => print('done'));
+          cardslist =  await JsonAPI().getResearchs(context).whenComplete(() => print('done'));
           
           Future.delayed(Duration(seconds: 2), (){
             setState(() {

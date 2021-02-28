@@ -1,6 +1,8 @@
 import 'package:esr_project/Components/ButtonsOfMain.dart';
 import 'package:flutter/material.dart';
 
+import 'Explore.dart';
+
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,7 @@ class HomeView extends StatelessWidget {
                     ButtonsOfMain(
                       onClick: (){
                         print('Researcher is Pressed');
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Explore()));
                       }, 
                       text: 'Researcher',
                     ),
